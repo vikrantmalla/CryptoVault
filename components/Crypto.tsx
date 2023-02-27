@@ -1,6 +1,6 @@
 import React from "react";
 import Data, { Coin } from "@/types/data";
-import CryptoCard from "./shared/CryptoCard";
+import CryptoCard from "./CryptoCard";
 
 interface Props {
   cryptoData: Data.CryptoData;

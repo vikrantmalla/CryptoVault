@@ -1,9 +1,7 @@
 import Head from "next/head";
-import { GetServerSideProps } from "next";
 import { PageData } from "@/types/data";
 import CryptoStatistics from "@/components/CryptoStatistics";
 import Crypto from "@/components/Crypto";
-import NavBar from "@/components/shared/NavBar";
 
 export default function Home({ cryptoData }: PageData.IndexPageData) {
   return (
@@ -14,9 +12,6 @@ export default function Home({ cryptoData }: PageData.IndexPageData) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <header>
-        <NavBar />
-      </header>
       <main className="container m-auto p-6">
         <section>
           <h1 className="mb-5 text-2xl">Crypto Market Statistics</h1>

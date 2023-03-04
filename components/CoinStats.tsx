@@ -14,40 +14,40 @@ const CoinStats = ({ data }: Props) => {
         <div className="flex justify-between py-3 border-b-2">
           <h1 className="text-xl">Price</h1>
           <span className="text-xl">
-            {data.coin.price && millify(Number(data.coin.price))}
+            {coin.price && millify(Number(coin.price))}
           </span>
         </div>
         <div className="flex justify-between py-3 border-b-2">
           <h1 className="text-xl">Rank</h1>
-          <span className="text-xl">{data.coin.rank}</span>
+          <span className="text-xl">{coin.rank}</span>
         </div>
         <div className="flex justify-between py-3 border-b-2">
           <h1 className="text-xl">Market Cap</h1>
           <span className="text-xl">
-            {data.coin.marketCap && millify(Number(data.coin.marketCap))}
+            {coin.marketCap && millify(Number(coin.marketCap))}
           </span>
         </div>
         <div className="flex justify-between py-3 border-b-2">
           <h1 className="text-xl">Total 24hrs Volume</h1>
-          <span className="text-xl">{data.coin["24hVolume"] && millify(Number(data.coin["24hVolume"]))}</span>
+          <span className="text-xl">{coin["24hVolume"] && millify(Number(coin["24hVolume"]))}</span>
         </div>
       </div>
       <div>
         <div className="flex justify-between py-3 border-b-2">
           <h1 className="text-xl">All Time High</h1>
-          <span className="text-xl">{data.coin.allTimeHigh.price && millify(Number(data.coin.allTimeHigh.price))}</span>
+          <span className="text-xl">{coin.allTimeHigh.price && millify(Number(coin.allTimeHigh.price))}</span>
         </div>
         <div className="flex justify-between py-3 border-b-2">
           <h1 className="text-xl">Fully diluted val</h1>
-          <span className="text-xl">{data.coin.fullyDilutedMarketCap && millify(Number(data.coin.fullyDilutedMarketCap))}</span>
+          <span className="text-xl">{coin.fullyDilutedMarketCap && millify(Number(coin.fullyDilutedMarketCap))}</span>
         </div>
         <div className="flex justify-between py-3 border-b-2">
           <h1 className="text-xl">Total supply</h1>
-          <span className="text-xl">{data.coin.supply.total && millify(Number(data.coin.supply.total))}</span>
+          <span className="text-xl">{coin.supply.total && millify(Number(coin.supply.total))}</span>
         </div>
         <div className="flex justify-between py-3 border-b-2">
           <h1 className="text-xl">Circulating supply</h1>
-          <span className="text-xl">{data.coin.supply.circulating && millify(Number(data.coin.supply.circulating))}</span>
+          <span className="text-xl">{coin.supply.circulating && millify(Number(coin.supply.circulating))}</span>
         </div>
       </div>
     </div>

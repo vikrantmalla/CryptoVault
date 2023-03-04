@@ -4,7 +4,6 @@ import { PageData } from "@/types/data";
 import CoinStats from "@/components/CoinStats";
 
 const SingleCoin = ({ crypto }: PageData.SlugPageData) => {
-  console.log(crypto);
   const { data } = crypto;
   return (
     <div className="container m-auto p-6">

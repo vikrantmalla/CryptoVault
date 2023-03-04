@@ -17,8 +17,8 @@ const CryptoCard = ({ coin }: Props) => {
     <div className="coin-card max-w-sm rounded overflow-hidden shadow-lg p-4">
       <div className="coin-card-header flex justify-between pb-4 border-b-2">
         <div className="flex gap-3 text-2xl">
-          <h1>{coin.rank}</h1>
-          <h1>{coin.name}</h1>
+          <h1>{coin.rank}.</h1>
+          <h1>{coin.symbol}</h1>
         </div>
         <Image src={coin.iconUrl} alt={coin.name} width={30} height={30} />
       </div>

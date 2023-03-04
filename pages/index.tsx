@@ -1,7 +1,8 @@
 import Head from "next/head";
+import Link from "next/link";
 import { PageData } from "@/types/data";
-import CryptoStatistics from "@/components/CryptoStatistics";
 import Crypto from "@/components/Crypto";
+import CryptoStatistics from "@/components/CryptoStatistics";
 
 export default function Home({ cryptoData }: PageData.IndexPageData) {
   return (
@@ -20,6 +21,9 @@ export default function Home({ cryptoData }: PageData.IndexPageData) {
         <section className="mt-10">
           <h1 className="mb-5 text-2xl">Top 10 Crypto</h1>
           <Crypto cryptoData={cryptoData} />
+          <div className="my-8 text-center">
+          <Link href= "/coins">Load More</Link>
+          </div>
         </section>
       </main>
     </>

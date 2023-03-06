@@ -52,7 +52,7 @@ export const getStaticProps = async (context: any) => {
 
 export const getStaticPaths = async () => {
   const referenceCurrencyUuid = "yhjMzLPhuIDl";
-  const limit = "10";
+  const limit = "100";
   const response = await fetch(
     `https://coinranking1.p.rapidapi.com/coins?referenceCurrencyUuid=${referenceCurrencyUuid}&limit=${limit}`,
     {

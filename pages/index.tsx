@@ -22,7 +22,9 @@ export default function Home({ cryptoData }: PageData.IndexPageData) {
           <h1 className="mb-5 text-2xl">Top 10 Crypto</h1>
           <Crypto cryptoData={cryptoData} />
           <div className="my-8 text-center">
-          <Link href= "/coins">Load More</Link>
+            <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r">
+              <Link href="/coins">Load More</Link>
+            </button>
           </div>
         </section>
       </main>
@@ -31,8 +33,8 @@ export default function Home({ cryptoData }: PageData.IndexPageData) {
 }
 
 export const getServerSideProps = async () => {
-  const referenceCurrencyUuid = 'yhjMzLPhuIDl';
-  const limit = '10';
+  const referenceCurrencyUuid = "yhjMzLPhuIDl";
+  const limit = "10";
   const response = await fetch(
     `https://coinranking1.p.rapidapi.com/coins?referenceCurrencyUuid=${referenceCurrencyUuid}&limit=${limit}`,
     {
@@ -45,7 +47,7 @@ export const getServerSideProps = async () => {
   const cryptoData = await response.json();
   return {
     props: {
-      cryptoData
+      cryptoData,
     },
   };
 };

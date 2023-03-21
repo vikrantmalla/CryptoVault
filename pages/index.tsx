@@ -4,7 +4,7 @@ import { PageData } from "@/types/data";
 import Crypto from "@/components/Crypto";
 import CryptoStatistics from "@/components/CryptoStatistics";
 
-export default function Home() {
+export default function Home({cryptoData}: PageData.IndexPageData) {
   return (
     <>
       <Head>
@@ -13,7 +13,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {/* <main className="container m-auto p-6">
+      <main className="container m-auto p-6">
         <section>
           <h1 className="mb-5 text-2xl">Crypto Market Statistics</h1>
           <CryptoStatistics cryptoData={cryptoData} />
@@ -27,27 +27,27 @@ export default function Home() {
             </button>
           </div>
         </section>
-      </main> */}
+      </main>
     </>
   );
 }
 
-// export const getServerSideProps = async () => {
-//   const referenceCurrencyUuid = "yhjMzLPhuIDl";
-//   const limit = "10";
-//   const response = await fetch(
-//     `https://coinranking1.p.rapidapi.com/coins?referenceCurrencyUuid=${referenceCurrencyUuid}&limit=${limit}`,
-//     {
-//       headers: {
-//         "x-rapidapi-key": `${process.env.NEXT_PUBLIC_RAPID_API_KEY}`,
-//         "x-rapidapi-host": `${process.env.NEXT_PUBLIC_RAPID_API_HOST}`,
-//       },
-//     }
-//   );
-//   const cryptoData = await response.json();
-//   return {
-//     props: {
-//       cryptoData,
-//     },
-//   };
-// };
+export const getServerSideProps = async () => {
+  const referenceCurrencyUuid = "yhjMzLPhuIDl";
+  const limit = "10";
+  const response = await fetch(
+    `https://coinranking1.p.rapidapi.com/coins?referenceCurrencyUuid=${referenceCurrencyUuid}&limit=${limit}`,
+    {
+      headers: {
+        "x-rapidapi-key": `${process.env.NEXT_PUBLIC_RAPID_API_KEY}`,
+        "x-rapidapi-host": `${process.env.NEXT_PUBLIC_RAPID_API_HOST}`,
+      },
+    }
+  );
+  const cryptoData = await response.json();
+  return {
+    props: {
+      cryptoData,
+    },
+  };
+};

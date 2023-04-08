@@ -1,20 +1,42 @@
 import React from "react";
-import { UseFormReturn } from "react-hook-form";
-import { SubmitForm } from "@/types/form";
+import { useForm } from "react-hook-form";
+import { SignUpSubmitForm } from "@/types/form";
 
-interface Props {
-  methods: UseFormReturn<SubmitForm>;
-}
-
-const SignUp = ({ methods }: Props) => {
+const SignUp = () => {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
-  } = methods;
+  } = useForm({
+    defaultValues: {
+      signupEmail: "",
+      signupPassword: "",
+      signupConfirmPassword: "",
+    },
+  });
 
-  const submit = (data: any) => {
+  const submit = (data: SignUpSubmitForm) => {
     console.log(data);
+  };
+
+  const validatePassword = (value: string) => {
+    if (!value) {
+      return "Please enter your password";
+    }
+    if (value.length < 8) {
+      return "Password must be at least 8 characters long";
+    }
+  };
+
+  const validateConfirmPassword = (value: string) => {
+    const password = watch("signupPassword");
+    if (!value) {
+      return "Please enter your confirm password";
+    }
+    if (value !== password) {
+      return "Passwords do not match";
+    }
   };
 
   return (
@@ -58,7 +80,7 @@ const SignUp = ({ methods }: Props) => {
           type="password"
           placeholder="Enter Password"
           {...register("signupPassword", {
-            required: "Please enter your password",
+            validate: validatePassword,
           })}
         />
         {errors.signupPassword != null && (
@@ -80,7 +102,7 @@ const SignUp = ({ methods }: Props) => {
           type="password"
           placeholder="Confirm Password"
           {...register("signupConfirmPassword", {
-            required: "Please enter your confirm password",
+            validate: validateConfirmPassword,
           })}
         />
         {errors.signupConfirmPassword != null && (

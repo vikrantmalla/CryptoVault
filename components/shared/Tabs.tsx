@@ -1,20 +1,10 @@
 import React, { useState } from "react";
-import { FormProvider, useForm } from "react-hook-form";
-import { SubmitForm } from "@/types/form";
 import LogIn from "../auth/LogIn";
 import SignUp from "../auth/SignUp";
+import { TabType } from "@/types/enum";
 
 const Tabs = () => {
-  const [openTab, setOpenTab] = useState(1);
-  const methods = useForm<SubmitForm>({
-    defaultValues: {
-      loginEmail: "",
-      loginPassword: "",
-      signupEmail: "",
-      signupPassword: "",
-      signupConfirmPassword: ""
-    }
-  })
+  const [openTab, setOpenTab] = useState(TabType.logIn);
   return (
     <>
       <div className="flex flex-wrap">
@@ -65,14 +55,12 @@ const Tabs = () => {
           <div className="relative flex flex-col min-w-0 break-words bg-white w-full rounded">
             <div className="px-4 py-5 flex-auto">
               <div className="tab-content tab-space">
-                <FormProvider {...methods}>
-                <div className={`w-full max-w-lg ${openTab === 1 ? "block" : "hidden"}`} id="link1">
-                 <LogIn methods={methods}/>
+                <div className={`w-full max-w-lg ${openTab === TabType.logIn ? "block" : "hidden"}`} id="link1">
+                 <LogIn />
                 </div>
-                <div className={`w-full max-w-lg ${openTab === 2 ? "block" : "hidden"}`} id="link2">
-                 <SignUp methods={methods}/>
+                <div className={`w-full max-w-lg ${openTab === TabType.signUp ? "block" : "hidden"}`} id="link2">
+                 <SignUp />
                 </div>
-                </FormProvider>
               </div>
             </div>
           </div>

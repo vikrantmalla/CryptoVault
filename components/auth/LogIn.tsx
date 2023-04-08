@@ -1,19 +1,19 @@
 import React from "react";
-import { UseFormReturn } from "react-hook-form";
-import { SubmitForm } from "@/types/form";
+import { useForm } from "react-hook-form";
+import { LogInSubmitForm } from "@/types/form";
 
-interface Props {
-  methods: UseFormReturn<SubmitForm>;
-}
-
-const LogIn = ({ methods }: Props) => {
+const LogIn = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = methods;
-
-  const submit = (data: any) => {
+  } = useForm({
+    defaultValues: {
+      loginEmail: "",
+      loginPassword: ""
+    },
+  });
+  const submit = (data: LogInSubmitForm) => {
     console.log(data);
   };
 

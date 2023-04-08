@@ -16,11 +16,11 @@ export default function Home({cryptoData}: PageData.IndexPageData) {
       <main className="container m-auto p-6">
         <section>
           <h1 className="mb-5 text-2xl">Crypto Market Statistics</h1>
-          <CryptoStatistics cryptoData={cryptoData} />
+          {/* <CryptoStatistics cryptoData={cryptoData} /> */}
         </section>
         <section className="mt-10">
           <h1 className="mb-5 text-2xl">Top 10 Crypto</h1>
-          <Crypto cryptoData={cryptoData} />
+          {/* <Crypto cryptoData={cryptoData} /> */}
           <div className="my-8 text-center">
             <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-r">
               <Link href="/coins">Load More</Link>
@@ -32,22 +32,22 @@ export default function Home({cryptoData}: PageData.IndexPageData) {
   );
 }
 
-export const getServerSideProps = async () => {
-  const referenceCurrencyUuid = "yhjMzLPhuIDl";
-  const limit = "10";
-  const response = await fetch(
-    `https://coinranking1.p.rapidapi.com/coins?referenceCurrencyUuid=${referenceCurrencyUuid}&limit=${limit}`,
-    {
-      headers: {
-        "x-rapidapi-key": `${process.env.NEXT_PUBLIC_RAPID_API_KEY}`,
-        "x-rapidapi-host": `${process.env.NEXT_PUBLIC_RAPID_API_HOST}`,
-      },
-    }
-  );
-  const cryptoData = await response.json();
-  return {
-    props: {
-      cryptoData,
-    },
-  };
-};
+// export const getServerSideProps = async () => {
+//   const referenceCurrencyUuid = "yhjMzLPhuIDl";
+//   const limit = "10";
+//   const response = await fetch(
+//     `https://coinranking1.p.rapidapi.com/coins?referenceCurrencyUuid=${referenceCurrencyUuid}&limit=${limit}`,
+//     {
+//       headers: {
+//         "x-rapidapi-key": `${process.env.NEXT_PUBLIC_RAPID_API_KEY}`,
+//         "x-rapidapi-host": `${process.env.NEXT_PUBLIC_RAPID_API_HOST}`,
+//       },
+//     }
+//   );
+//   const cryptoData = await response.json();
+//   return {
+//     props: {
+//       cryptoData,
+//     },
+//   };
+// };

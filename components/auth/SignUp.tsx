@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { SignUpSubmitForm } from "@/types/form";
+import { loginUser } from "@/helpers/login";
+import { useRouter } from "next/router";
 
 const SignUp = () => {
   const {
@@ -15,17 +17,48 @@ const SignUp = () => {
       signupConfirmPassword: "",
     },
   });
+  const [submitError, setSubmitError] = useState<string>("")
+  const router = useRouter()
 
-  const submit = (data: SignUpSubmitForm) => {
-    console.log(data);
+  const submit = async (formData: SignUpSubmitForm) => {
+    try {
+      const response = await fetch("http://localhost:3000/api/auth/signup", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: formData.signupEmail, password: formData.signupPassword
+        }),
+      });
+      const responseData = await response.json();
+
+      if (responseData?.success) {
+        const loginRes = await loginUser({
+          email: formData.signupEmail,
+          password: formData.signupPassword,
+        });
+
+        if (loginRes && !loginRes.ok) {
+          setSubmitError(loginRes.error || "");
+        } else {
+          router.push("/");
+        }
+      }
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        const errorMsg = error.message;
+        setSubmitError(errorMsg);
+      }
+    }
   };
 
   const validatePassword = (value: string) => {
     if (!value) {
       return "Please enter your password";
     }
-    if (value.length < 8) {
-      return "Password must be at least 8 characters long";
+    if (value.length < 6) {
+      return "Password must be at least 6 characters long";
     }
   };
 
@@ -94,7 +127,7 @@ const SignUp = () => {
           className="block text-gray-700 text-sm font-bold mb-2"
           htmlFor="password"
         >
-          Password
+          Conform Password
         </label>
         <input
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"

@@ -6,7 +6,7 @@ const LogIn = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm({
     defaultValues: {
       loginEmail: "",
@@ -72,8 +72,9 @@ const LogIn = () => {
           Forgot Password?
         </p>
         <button
-          className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          className={`w-full font-bold py-2 px-4 rounded ${isSubmitting ? 'bg-gray-100 text-black border border-black' : 'bg-blue-500 hover:bg-blue-700 text-white focus:outline-none focus:shadow-outline'}`}
           type="submit"
+          disabled={isSubmitting}
         >
           Log In
         </button>

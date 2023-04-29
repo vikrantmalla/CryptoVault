@@ -9,7 +9,8 @@ const SignUp = () => {
     register,
     handleSubmit,
     watch,
-    formState: { errors },
+    formState: { errors, isSubmitting },
+    reset
   } = useForm({
     defaultValues: {
       signupEmail: "",
@@ -44,6 +45,7 @@ const SignUp = () => {
         } else {
           router.push("/");
         }
+        reset();
       }
     } catch (error: unknown) {
       if (error instanceof Error) {
@@ -146,8 +148,9 @@ const SignUp = () => {
       </div>
       <div className="my-auto">
         <button
-          className="w-full bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          className={`w-full font-bold py-2 px-4 rounded ${isSubmitting ? 'bg-gray-100 text-black border border-black' : 'bg-blue-500 hover:bg-blue-700 text-white focus:outline-none focus:shadow-outline'}`}
           type="submit"
+          disabled={isSubmitting}
         >
           Sign In
         </button>

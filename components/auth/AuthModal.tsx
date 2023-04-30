@@ -6,10 +6,6 @@ interface Props {
 }
 
 const AuthModal = ({ setShowModal }: Props) => {
-  const handleOpen = () => {
-    setShowModal(true);
-  };
-
   const handleClose = () => {
     setShowModal(false);
   };
@@ -35,7 +31,7 @@ const AuthModal = ({ setShowModal }: Props) => {
             onClick={handleModalClick}
           >
             <div>
-              <TabsRender />
+              <TabsRender/>
             </div>
           </div>
         </div>

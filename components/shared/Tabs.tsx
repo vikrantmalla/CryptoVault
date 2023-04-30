@@ -3,6 +3,10 @@ import LogIn from "../auth/LogIn";
 import SignUp from "../auth/SignUp";
 import { TabType } from "@/types/enum";
 
+interface Props {
+  setShowModal: React.Dispatch<React.SetStateAction<boolean>>
+}
+
 const Tabs = () => {
   const [openTab, setOpenTab] = useState(TabType.logIn);
   return (

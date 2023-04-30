@@ -59,8 +59,8 @@ const SignUp = () => {
     if (!value) {
       return "Please enter your password";
     }
-    if (value.length < 6) {
-      return "Password must be at least 6 characters long";
+    if (value.length < 4) {
+      return "Password must be at least 4 characters long";
     }
   };
 
@@ -129,7 +129,7 @@ const SignUp = () => {
           className="block text-gray-700 text-sm font-bold mb-2"
           htmlFor="password"
         >
-          Conform Password
+          Confirm Password
         </label>
         <input
           className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline"

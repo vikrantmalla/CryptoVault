@@ -2,12 +2,17 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { FaBars, FaTimes } from "react-icons/fa";
 import AuthModal from "../auth/AuthModal";
-
+import { useSession, signOut } from "next-auth/react";
 
 const NavBar = () => {
+  const session = useSession();
   const [navbarOpen, setNavbarOpen] = useState(false);
   // modal open
   const [showModal, setShowModal] = useState(false);
+
+  const handleSignOut = async () => {
+    signOut;
+  };
 
   return (
     <>
@@ -40,13 +45,27 @@ const NavBar = () => {
               >
                 hello1
               </button>
-              <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                type="button"
-                onClick={() => setShowModal(true)}
-              >
-                Login
-              </button>
+              {session.status !== "authenticated" ? (
+                <>
+                  <button
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    type="button"
+                    onClick={() => setShowModal(true)}
+                  >
+                    Log in
+                  </button>
+                </>
+              ) : (
+                <>
+                  <button
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    type="button"
+                    onClick={handleSignOut}
+                  >
+                    Log out
+                  </button>
+                </>
+              )}
             </div>
           </div>
         </div>

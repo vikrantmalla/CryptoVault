@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { LogInSubmitForm } from "@/types/form";
+import { signIn } from "next-auth/react";
 
 const LogIn = () => {
   const {
@@ -14,7 +15,13 @@ const LogIn = () => {
     },
   });
   const submit = (data: LogInSubmitForm) => {
-    console.log(data);
+    const {loginEmail, loginPassword} = data
+    const email = loginEmail
+    const password = loginPassword
+    signIn("credentials", {
+      email,
+      password
+    });
   };
 
   return (

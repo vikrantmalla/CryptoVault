@@ -3,8 +3,10 @@ import Link from "next/link";
 import { PageData } from "@/types/data";
 import Crypto from "@/components/Crypto";
 import CryptoStatistics from "@/components/CryptoStatistics";
+import { useSession } from "next-auth/react";
 
 export default function Home({cryptoData}: PageData.IndexPageData) {
+  const { data: session, status } = useSession();
   return (
     <>
       <Head>

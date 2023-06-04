@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { SignUpSubmitForm } from "@/types/form";
 import { loginUser } from "@/helpers/login";
 import { useRouter } from "next/router";
+import baseUrl from "@/helpers/lib/baseUrl";
 
 const SignUp = () => {
   const {
@@ -23,7 +24,7 @@ const SignUp = () => {
 
   const submit = async (formData: SignUpSubmitForm) => {
     try {
-      const response = await fetch("http://localhost:3000/api/auth/signup", {
+      const response = await fetch(`${baseUrl}/api/auth/signup`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -37,7 +37,8 @@ const options: NextAuthOptions = {
         })
     ],
     pages: {
-        signIn: "/login"
+        signIn: "/",
+        error: "/"
     },
     session: {
         strategy: "jwt"

@@ -4,6 +4,7 @@ import { PageData } from "@/types/data";
 import Crypto from "@/components/Crypto";
 import CryptoStatistics from "@/components/CryptoStatistics";
 import { useSession } from "next-auth/react";
+import { getCryptosData } from "@/services/apiService";
 
 export default function Home({cryptoData}: PageData.IndexPageData) {
   const { data: session, status } = useSession();
@@ -35,18 +36,8 @@ export default function Home({cryptoData}: PageData.IndexPageData) {
 }
 
 export const getServerSideProps = async () => {
-  const referenceCurrencyUuid = "yhjMzLPhuIDl";
   const limit = "10";
-  const response = await fetch(
-    `https://coinranking1.p.rapidapi.com/coins?referenceCurrencyUuid=${referenceCurrencyUuid}&limit=${limit}`,
-    {
-      headers: {
-        "x-rapidapi-key": `${process.env.NEXT_PUBLIC_RAPID_API_KEY}`,
-        "x-rapidapi-host": `${process.env.NEXT_PUBLIC_RAPID_API_HOST}`,
-      },
-    }
-  );
-  const cryptoData = await response.json();
+  const cryptoData = await getCryptosData(limit);
   return {
     props: {
       cryptoData,

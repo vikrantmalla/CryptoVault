@@ -3,6 +3,7 @@ import { Coin, PageData } from "@/types/data";
 import CryptoCard from "@/components/CryptoCard";
 import PaginationButton from "@/components/shared/PaginationButton";
 import SearchBar from "@/components/shared/SearchBar";
+import { getCryptosData } from "@/services/apiService";
 
 const CoinsList = ({ cryptoData }: PageData.IndexPageData) => {
   const { data } = cryptoData;
@@ -42,18 +43,8 @@ const CoinsList = ({ cryptoData }: PageData.IndexPageData) => {
 export default CoinsList;
 
 export const getServerSideProps = async () => {
-  const referenceCurrencyUuid = "yhjMzLPhuIDl";
   const limit = "100";
-  const response = await fetch(
-    `https://coinranking1.p.rapidapi.com/coins?referenceCurrencyUuid=${referenceCurrencyUuid}&limit=${limit}`,
-    {
-      headers: {
-        "x-rapidapi-key": `${process.env.NEXT_PUBLIC_RAPID_API_KEY}`,
-        "x-rapidapi-host": `${process.env.NEXT_PUBLIC_RAPID_API_HOST}`,
-      },
-    }
-  );
-  const cryptoData = await response.json();
+  const cryptoData = await getCryptosData(limit);
   return {
     props: {
       cryptoData,

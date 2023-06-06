@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { PageData } from "@/types/data";
 import CoinStats from "@/components/CoinStats";
+import { getCryptosData, getSingleCoinData } from "@/services/apiService";
 
 const SingleCoin = ({ crypto }: PageData.SlugPageData) => {
   const { data } = crypto;
@@ -51,23 +52,9 @@ export const getStaticProps = async (context: any) => {
 };
 
 export const getStaticPaths = async () => {
-  const referenceCurrencyUuid = "yhjMzLPhuIDl";
   const limit = "100";
-  const response = await fetch(
-    `https://coinranking1.p.rapidapi.com/coins?referenceCurrencyUuid=${referenceCurrencyUuid}&limit=${limit}`,
-    {
-      headers: {
-        "x-rapidapi-key": `${process.env.NEXT_PUBLIC_RAPID_API_KEY}`,
-        "x-rapidapi-host": `${process.env.NEXT_PUBLIC_RAPID_API_HOST}`,
-      },
-    }
-  );
-  const cryptoData = await response.json();
-  const paths = cryptoData.data.coins.map((single: { uuid: string }) => {
-    return {
-      params: { coin: single.uuid },
-    };
-  });
+  const cryptoData = await getCryptosData(limit);
+  const paths = getSingleCoinData(cryptoData);
   return {
     paths,
     fallback: false,

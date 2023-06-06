@@ -16,11 +16,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     if (userExists) {
       return res.status(409).json({ error: "User Already exists" });
     } else {
-      if (password.length < 4)
-        return res
-          .status(409)
-          .json({ error: "Password should be 4 characters long" });
-
       try {
         const user = await User.create({
           email,

@@ -10,8 +10,8 @@ const NavBar = () => {
   // modal open
   const [showModal, setShowModal] = useState(false);
 
-  const handleSignOut = async () => {
-    signOut;
+  const handleSignOut = () => {
+    signOut();
   };
 
   return (
@@ -39,12 +39,6 @@ const NavBar = () => {
               </Link>
             </div>
             <div className="flex gap-3">
-              <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                type="button"
-              >
-                hello1
-              </button>
               {session.status !== "authenticated" ? (
                 <>
                   <button
@@ -52,7 +46,7 @@ const NavBar = () => {
                     type="button"
                     onClick={() => setShowModal(true)}
                   >
-                    Log in
+                    Log In
                   </button>
                 </>
               ) : (
@@ -62,7 +56,7 @@ const NavBar = () => {
                     type="button"
                     onClick={handleSignOut}
                   >
-                    Log out
+                    Log Out
                   </button>
                 </>
               )}

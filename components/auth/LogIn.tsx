@@ -2,6 +2,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { LogInSubmitForm } from "@/types/form";
 import { signIn } from "next-auth/react";
+import GoogleButton from "react-google-button";
 
 const LogIn = () => {
   const {
@@ -11,16 +12,16 @@ const LogIn = () => {
   } = useForm({
     defaultValues: {
       loginEmail: "",
-      loginPassword: ""
+      loginPassword: "",
     },
   });
   const submit = (data: LogInSubmitForm) => {
-    const {loginEmail, loginPassword} = data
-    const email = loginEmail
-    const password = loginPassword
+    const { loginEmail, loginPassword } = data;
+    const email = loginEmail;
+    const password = loginPassword;
     signIn("credentials", {
       email,
-      password
+      password,
     });
   };
 
@@ -79,12 +80,21 @@ const LogIn = () => {
           Forgot Password?
         </p>
         <button
-          className={`w-full font-bold py-2 px-4 rounded ${isSubmitting ? 'bg-gray-100 text-black border border-black' : 'bg-blue-500 hover:bg-blue-700 text-white focus:outline-none focus:shadow-outline'}`}
+          className={`w-full font-bold py-2 px-4 h-[50px] ${
+            isSubmitting
+              ? "bg-gray-100 text-black border border-black"
+              : "bg-blue-500 hover:bg-blue-700 text-white focus:outline-none focus:shadow-outline"
+          }`}
           type="submit"
           disabled={isSubmitting}
         >
           Log In
         </button>
+        <GoogleButton
+          onClick={() => signIn("google")}
+          style={{ width: "100%" }}
+          className="mt-3"
+        />
       </div>
     </form>
   );

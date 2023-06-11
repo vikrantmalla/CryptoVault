@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import TabsRender from "../shared/Tabs";
 
 interface Props {
@@ -6,6 +6,8 @@ interface Props {
 }
 
 const AuthModal = ({ setShowModal }: Props) => {
+  const [showForgetPasswordModal, setShowForgetPasswordModal] = useState(false);
+  console.log(showForgetPasswordModal)
   const handleClose = () => {
     setShowModal(false);
   };
@@ -31,7 +33,7 @@ const AuthModal = ({ setShowModal }: Props) => {
             onClick={handleModalClick}
           >
             <div>
-              <TabsRender/>
+              <TabsRender showForgetPasswordModal={showForgetPasswordModal} setShowForgetPasswordModal={setShowForgetPasswordModal}/>
             </div>
           </div>
         </div>

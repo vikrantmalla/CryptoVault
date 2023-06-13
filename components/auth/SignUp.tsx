@@ -4,8 +4,14 @@ import { SignUpSubmitForm } from "@/types/form";
 import { loginUser } from "@/helpers/login";
 import { useRouter } from "next/router";
 import baseUrl from "@/helpers/lib/baseUrl";
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
-const SignUp = () => {
+interface Props {
+  setShowModal: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const SignUp = ({setShowModal}: Props) => {
   const {
     register,
     handleSubmit,
@@ -45,6 +51,10 @@ const SignUp = () => {
           setSubmitError(loginRes.error || "");
         } else {
           router.push("/");
+          toast('Registration is successful. 🎉', {
+            toastId: 1
+          })
+          setShowModal(false)
         }
         reset();
       }

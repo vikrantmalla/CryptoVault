@@ -7,7 +7,6 @@ interface Props {
 
 const AuthModal = ({ setShowModal }: Props) => {
   const [showForgetPasswordModal, setShowForgetPasswordModal] = useState(false);
-  console.log(showForgetPasswordModal)
   const handleClose = () => {
     setShowModal(false);
   };
@@ -33,7 +32,7 @@ const AuthModal = ({ setShowModal }: Props) => {
             onClick={handleModalClick}
           >
             <div>
-              <TabsRender showForgetPasswordModal={showForgetPasswordModal} setShowForgetPasswordModal={setShowForgetPasswordModal}/>
+              <TabsRender showForgetPasswordModal={showForgetPasswordModal} setShowForgetPasswordModal={setShowForgetPasswordModal} setShowModal={setShowModal}/>
             </div>
           </div>
         </div>

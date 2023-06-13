@@ -6,11 +6,13 @@ import { TabType } from "@/types/enum";
 interface Props {
   showForgetPasswordModal: boolean;
   setShowForgetPasswordModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const Tabs = ({
   showForgetPasswordModal,
   setShowForgetPasswordModal,
+  setShowModal
 }: Props) => {
   const [openTab, setOpenTab] = useState(TabType.logIn);
   return (
@@ -87,7 +89,7 @@ const Tabs = ({
                   }`}
                   id="link2"
                 >
-                  <SignUp />
+                  <SignUp setShowModal={setShowModal}/>
                 </div>
               </div>
             </div>
@@ -101,12 +103,14 @@ const Tabs = ({
 export default function TabsRender({
   showForgetPasswordModal,
   setShowForgetPasswordModal,
+  setShowModal
 }: Props) {
   return (
     <>
       <Tabs
         showForgetPasswordModal={showForgetPasswordModal}
         setShowForgetPasswordModal={setShowForgetPasswordModal}
+        setShowModal={setShowModal}
       />
     </>
   );

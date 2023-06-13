@@ -5,8 +5,10 @@ import Crypto from "@/components/Crypto";
 import CryptoStatistics from "@/components/CryptoStatistics";
 import { useSession } from "next-auth/react";
 import { getCryptosData } from "@/services/apiService";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-export default function Home({cryptoData}: PageData.IndexPageData) {
+export default function Home({ cryptoData }: PageData.IndexPageData) {
   const { data: session, status } = useSession();
   return (
     <>
@@ -30,6 +32,17 @@ export default function Home({cryptoData}: PageData.IndexPageData) {
             </button>
           </div>
         </section>
+        <ToastContainer
+          position="bottom-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={true}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
       </main>
     </>
   );

@@ -4,6 +4,8 @@ import { LogInSubmitForm } from "@/types/form";
 import { signIn } from "next-auth/react";
 import GoogleButton from "react-google-button";
 import ResetPassword from "./ResetPassword";
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 interface Props {
   showForgetPasswordModal: boolean;
@@ -32,6 +34,9 @@ const LogIn = ({
       email,
       password,
     });
+    toast('Login is successful. 🎉', {
+      toastId: 1
+    })
   };
 
   return showForgetPasswordModal === false ? (

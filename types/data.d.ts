@@ -117,6 +117,14 @@ declare namespace Data {
     email: string;
     fullName: string;
   }
+
+  interface InitialState {
+    value: AuthState;
+  }
+
+  interface AuthState {
+    showModal: boolean
+  }
 }
 
 export = Data;

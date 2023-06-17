@@ -1,5 +1,7 @@
 import React, { ReactNode } from "react";
 import NavBar from "./NavBar";
+import { store } from "@/redux/store";
+import { Provider } from "react-redux";
 
 interface Props {
   children: ReactNode;
@@ -8,10 +10,12 @@ interface Props {
 const Layout = ({ children }: Props) => {
   return (
     <>
-      <header>
-        <NavBar />
-      </header>
-      {children}
+      <Provider store={store}>
+        <header>
+          <NavBar />
+        </header>
+        {children}
+      </Provider>
     </>
   );
 };

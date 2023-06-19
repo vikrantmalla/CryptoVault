@@ -3,7 +3,7 @@ import Link from "next/link";
 import { FaBars, FaTimes } from "react-icons/fa";
 import AuthModal from "../auth/AuthModal";
 import { useSession, signOut } from "next-auth/react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "@/redux/store";
 import { setShowModal } from "@/redux/features/auth-slice";
 
@@ -11,11 +11,15 @@ const NavBar = () => {
   const session = useSession();
   const dispatch = useDispatch<AppDispatch>();
   const [navbarOpen, setNavbarOpen] = useState(false);
-  // // modal open
-  const [showModal, setShowModal] = useState(false);
 
   const handleSignOut = () => {
     signOut();
+  };
+
+  // modal open
+  const showModal = useSelector((state: any) => state.authReducer.showModal);
+  const toggleModal = () => {
+      dispatch(setShowModal(true));
   };
 
   return (
@@ -48,7 +52,7 @@ const NavBar = () => {
                   <button
                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
                     type="button"
-                    onClick={() => setShowModal(true)}
+                    onClick={toggleModal}
                   >
                     Log In
                   </button>
@@ -68,9 +72,10 @@ const NavBar = () => {
           </div>
         </div>
       </nav>
-      {showModal ? <AuthModal setShowModal={setShowModal} /> : null}
+      {showModal ? <AuthModal /> : null}
     </>
   );
 };
 
 export default NavBar;
+

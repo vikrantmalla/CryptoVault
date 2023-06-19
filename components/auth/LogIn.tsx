@@ -4,6 +4,9 @@ import { LogInSubmitForm } from "@/types/form";
 import { signIn } from "next-auth/react";
 import GoogleButton from "react-google-button";
 import ResetPassword from "./ResetPassword";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/redux/store";
+import { setShowModal } from "@/redux/features/auth-slice";
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -26,6 +29,7 @@ const LogIn = ({
       loginPassword: "",
     },
   });
+  const dispatch = useDispatch<AppDispatch>();
   const submit = (data: LogInSubmitForm) => {
     const { loginEmail, loginPassword } = data;
     const email = loginEmail;
@@ -37,6 +41,7 @@ const LogIn = ({
     toast('Login is successful. 🎉', {
       toastId: 1
     })
+    dispatch(setShowModal(false));
   };
 
   return showForgetPasswordModal === false ? (

@@ -1,14 +1,14 @@
 import React, { useState } from "react";
 import TabsRender from "../shared/Tabs";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/redux/store";
+import { setShowModal } from "@/redux/features/auth-slice";
 
-interface Props {
-  setShowModal: React.Dispatch<React.SetStateAction<boolean>>;
-}
-
-const AuthModal = ({ setShowModal }: Props) => {
+const AuthModal = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const [showForgetPasswordModal, setShowForgetPasswordModal] = useState(false);
   const handleClose = () => {
-    setShowModal(false);
+    dispatch(setShowModal(false));
   };
 
   const handleModalClick = (e: { stopPropagation: () => void }) => {
@@ -32,7 +32,7 @@ const AuthModal = ({ setShowModal }: Props) => {
             onClick={handleModalClick}
           >
             <div>
-              <TabsRender showForgetPasswordModal={showForgetPasswordModal} setShowForgetPasswordModal={setShowForgetPasswordModal} setShowModal={setShowModal}/>
+              <TabsRender showForgetPasswordModal={showForgetPasswordModal} setShowForgetPasswordModal={setShowForgetPasswordModal} />
             </div>
           </div>
         </div>

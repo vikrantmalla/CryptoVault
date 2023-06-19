@@ -3,15 +3,15 @@ import { useForm } from "react-hook-form";
 import { SignUpSubmitForm } from "@/types/form";
 import { loginUser } from "@/helpers/login";
 import { useRouter } from "next/router";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "@/redux/store";
+import { setShowModal } from "@/redux/features/auth-slice";
 import baseUrl from "@/helpers/lib/baseUrl";
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-interface Props {
-  setShowModal: React.Dispatch<React.SetStateAction<boolean>>
-}
 
-const SignUp = ({setShowModal}: Props) => {
+const SignUp = () => {
   const {
     register,
     handleSubmit,
@@ -25,8 +25,9 @@ const SignUp = ({setShowModal}: Props) => {
       signupConfirmPassword: "",
     },
   });
+  const router = useRouter();
+  const dispatch = useDispatch<AppDispatch>();
   const [submitError, setSubmitError] = useState<string>("")
-  const router = useRouter()
 
   const submit = async (formData: SignUpSubmitForm) => {
     try {
@@ -54,7 +55,7 @@ const SignUp = ({setShowModal}: Props) => {
           toast('Registration is successful. 🎉', {
             toastId: 1
           })
-          setShowModal(false)
+          dispatch(setShowModal(false));
         }
         reset();
       }

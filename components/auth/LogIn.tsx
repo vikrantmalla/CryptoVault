@@ -7,8 +7,8 @@ import ResetPassword from "./ResetPassword";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "@/redux/store";
 import { setShowModal } from "@/redux/features/auth-slice";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 interface Props {
   showForgetPasswordModal: boolean;
@@ -37,16 +37,10 @@ const LogIn = ({
     signIn("credentials", {
       email,
       password,
-      redirect: false
-    }).then((callback) => {
-      if (callback?.error) {
-        toast.error(callback.error);
-      }
-
-      if (callback?.ok && !callback?.error) {
-        toast.success("Logged in successfully!");
-      }
     });
+    toast('Login is successful. 🎉', {
+      toastId: 1
+    })
     dispatch(setShowModal(false));
   };
 
